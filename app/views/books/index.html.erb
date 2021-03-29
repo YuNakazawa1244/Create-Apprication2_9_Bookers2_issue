@@ -1,8 +1,17 @@
 <div class="container px-5 px-sm-0">
 　<div class="row">
+    <!--エラーメッセージの挿入-->
+    <p class="text-danger">
+      <% if @book.errors.any? %>
+        <%= @book.errors.count %>件のエラーが発生しました
+        <%= @book.errors.full_messages.each do |message| %>
+  　　      <%= message %>
+　      <% end %>
+      <% end %>
+    </p>
 
 
-<%= render 'books/userinfo', user: @user,book: @book %>
+<%= render 'books/userinfo', user: current_user,book: @book %>
 
 
     <div class="col-md-8 offset-md-1">

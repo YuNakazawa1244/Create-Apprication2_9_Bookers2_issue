@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 
 def index
-  @user = current_user
+  # @user = current_user
   @book = Book.new
   @books = Book.all
 end
@@ -18,15 +18,16 @@ def new
 end
 
 def create
-  book = Book.new(book_params)
-  book.user_id = current_user.id
-  book.save
+  @book = Book.new(book_params)
+  @book.user_id = current_user.id
+  @book.save
 
-  if Book.new(book_params)
+  if @book.save
     flash[:notice] = "Create book sucecessfully."
-    redirect_to book_path(book)
+    redirect_to books_path(@book)
   else
-    render :books
+    @books = Book.all
+    render :index
   end
 end
 
@@ -49,11 +50,9 @@ end
 
 def update
   @book = Book.find(params[:id])
-
   if @book.update(book_params)
     flash[:notice] = "Update sucecessfully."
     redirect_to book_path
-
   else
     render :edit
   end
