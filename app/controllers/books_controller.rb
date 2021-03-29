@@ -14,7 +14,14 @@ def create
   book = Book.new(book_params)
   book.user_id = current_user.id
   book.save
-  redirect_to book_path(book)
+
+  if Book.new(book_params)
+    flash[:notice] = "sucecessfully."
+    redirect_to book_path(book)
+
+  else
+    render :books
+  end
 end
 
 def show
@@ -38,7 +45,7 @@ def update
   @book = Book.find(params[:id])
 
   if @book.update(book_params)
-    flash[:notice] = "sucecessfully"
+    flash[:notice] = "sucecessfully."
     redirect_to book_path
 
   else
