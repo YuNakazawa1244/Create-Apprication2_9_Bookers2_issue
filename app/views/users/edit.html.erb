@@ -7,7 +7,7 @@
     <!--エラーメッセージの挿入-->
     <p class="text-danger">
       <% if @user.errors.any? %>
-        <%= @user.errors.count %>件のエラーが発生しました
+        <%= @user.errors.count %> error.
         <%= @user.errors.full_messages.each do |message| %>
   　　      <%= message %>
 　      <% end %>

@@ -21,7 +21,7 @@ def create
   @book.save
 
   if @book.save
-    flash[:notice] = "Create book sucecessfully."
+    flash[:notice] = "Create book successfully."
     redirect_to book_path(@book)
   else
     @books = Book.all
@@ -49,7 +49,7 @@ end
 def update
   @book = Book.find(params[:id])
   if @book.update(book_params)
-    flash[:notice] = "Update sucecessfully."
+    flash[:notice] = "Update successfully."
     redirect_to book_path
   else
     render :edit
