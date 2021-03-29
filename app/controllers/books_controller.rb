@@ -17,14 +17,40 @@ def create
   redirect_to book_path(book)
 end
 
+def show
+  @book = Book.find(params[:id])
+  @new_book = Book.new
+  @user = @book.user
+end
+
 def edit
-  @user = User.find(params[:id])
+  @book = Book.find(params[:id])
+
+  if current_user != @book.user
+    redirect_to books_path
+  end
+
+  @user = User.find(@book.user_id)
+
 end
 
 def update
+  @book = Book.find(params[:id])
+
+  if @book.update(book_params)
+    flash[:notice] = "sucecessfully"
+    redirect_to book_path
+
+  else
+    render :edit
+  end
+
 end
 
 def destroy
+  @book = Book.find(params[:id])
+  @book.destroy
+  redirect_to books_path
 end
 
 
