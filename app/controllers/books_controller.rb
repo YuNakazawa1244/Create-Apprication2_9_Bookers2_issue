@@ -8,13 +8,11 @@ end
 
 def new
   @book = Book.new
-  # 以下追加
   if @book.save
     redirect_to book_path
   else
     render :new
   end
-  # 以上追加
 end
 
 def create
@@ -24,7 +22,7 @@ def create
 
   if @book.save
     flash[:notice] = "Create book sucecessfully."
-    redirect_to books_path(@book)
+    redirect_to book_path(@book)
   else
     @books = Book.all
     render :index

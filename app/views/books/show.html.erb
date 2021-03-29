@@ -13,7 +13,7 @@
           <td>
             <%= link_to attachment_image_tag(@user, :profile_image, :fill,60,60, fallback: "no_image.jpg"), user_path(@user.id) %>
             <br />
-            <% link_to @user.name,user_path(@user.id) %>
+            <%= link_to @user.name,user_path(@user.id) %>
           </td>
           <td><%= link_to @book.title, book_path(@book.id) %></td>
           <td><%= @book.body %></td>
