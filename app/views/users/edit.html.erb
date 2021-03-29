@@ -4,8 +4,15 @@
     <%= flash[:notice] %>
     <h1>User info</h1>
 
-<!--エラーメッセージの挿入-->
-
+    <!--エラーメッセージの挿入-->
+    <p class="text-danger">
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>件のエラーが発生しました
+        <%= @user.errors.full_messages.each do |message| %>
+  　　      <%= message %>
+　      <% end %>
+      <% end %>
+    </p>
 
       <%= form_with model: @user,local:true do |f|%>
         <label for="inputName">Name</label><br />

@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   end
 
   def create
+
   end
 
   def index
@@ -29,9 +30,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    if user.update(user_params)
-      flash[:notice] = "sucecessfully."
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:notice] = "Update sucecessfully."
       redirect_to user_path
     else
       render :edit

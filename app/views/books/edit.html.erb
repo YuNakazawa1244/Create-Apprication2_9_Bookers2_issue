@@ -3,7 +3,15 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h1>Editing Book</h1>
 
-      <!--ここにエラーメッセージのコード?-->
+      <!--ここにエラーメッセージのコード-->
+      <p class="text-danger">
+        <% if @user.errors.any? %>
+          <%= @user.errors.count %>件のエラーが発生しました
+          <%= @user.errors.full_messages.each do |message| %>
+            <%= message %>
+          <% end %>
+        <% end %>
+      </p>
 
 
     <%= form_with model: @book, local: true do |f| %>
