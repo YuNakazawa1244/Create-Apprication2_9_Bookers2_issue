@@ -1,6 +1,5 @@
 <div class="container px-5 px-sm-0">
-　<div class="row">
-    <!--エラーメッセージの挿入-->
+      <!--エラーメッセージの挿入-->
     <p class="text-danger">
       <% if @book.errors.any? %>
         <%= @book.errors.count %>error.
@@ -9,11 +8,10 @@
 　      <% end %>
       <% end %>
     </p>
-
-<div class="col-md-3">
-<%= render 'books/userinfo', user: current_user,book: @book %>
-</div>
-
+　<div class="row">
+　　<div class="col-md-3">
+　　　　<%= render 'books/userinfo', user: current_user,book: @book %>
+　　</div>
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
         <table class="table table-hover table-inverse">
