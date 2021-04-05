@@ -5,6 +5,7 @@
 <%= render 'books/userinfo', user: @user,book: @new_book %>
 </div>
 
+
   <div class = "col-md-8 offset-md-1" >
     <h2>Book detail</h2>
     <table class="table">
@@ -33,9 +34,9 @@
           <% end %>
 <!--以上いいね機能-->
 <!--以下コメント数の機能-->
-          　<td>
-          　 <%= link_to "#{@book.post_comments.count}コメント",book_path(@book.id) %>
-          　</td>
+          <td>
+          <%= link_to "#{@book.post_comments.count}コメント",book_path(@book.id) %>
+          </td>
 <!--以上コメント数の機能-->
           <% if @user == current_user %>
             <td><%= link_to "Edit", edit_book_path(@book.id),class: "btn btn-sm btn-success" %></td>
@@ -68,6 +69,14 @@
   </tbody>
 </div>
 <% end %>
+
+    <p class="text-danger">
+      <% if @comment.present? %>
+        <% @comment.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
+    </p>
 
     <div class="new-comments">
       <%= form_with(model:[@book,@post_comment],local:true) do |f| %>

@@ -8,6 +8,11 @@
   　　      <%= message %>
 　      <% end %>
       <% end %>
+      <% if @comment.present? %>
+        <% @comment.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
     </p>
 　　　　<%= render 'books/userinfo', user: current_user,book: @new_book %>
 　　</div>
