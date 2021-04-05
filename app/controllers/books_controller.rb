@@ -6,7 +6,6 @@ def index
   @new_book = Book.new
   # @book = Book.new
   @books = Book.all
-  @book = Book.find(params[:id])
 # 以上いいね機能
 end
 
