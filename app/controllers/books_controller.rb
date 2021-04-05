@@ -4,7 +4,6 @@ def index
 
 # 以下いいね機能
   @new_book = Book.new
-  # @book = Book.new
   @books = Book.all
 # 以上いいね機能
 end
@@ -36,6 +35,7 @@ def show
   @book = Book.find(params[:id])
   @new_book = Book.new
   @user = @book.user
+  @post_comment = PostComment.new
 end
 
 def edit
