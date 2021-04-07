@@ -7,6 +7,12 @@ class User < ApplicationRecord
   has_many :books,dependent: :destroy
   has_many :favorites,dependent: :destroy
   has_many :post_comments,dependent: :destroy
+  
+# 以下フォローフォロワー機能
+　has_many :xxx,class_name:"Hogeモデル名",foreign_key:"follower_id",dependent: :destroy
+　
+　has_many :yyy,through: :xxx,source: :zzz
+# 以上
 
   attachment :profile_image
 
