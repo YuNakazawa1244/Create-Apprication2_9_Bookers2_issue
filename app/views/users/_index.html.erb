@@ -1,21 +1,4 @@
-<div class="container px-5 px-sm-0">
-  <div class="row">
-    <p class="text-danger">
-      <% if @user.errors.any? %>
-        <%= @user.errors.count %> error.
-        <%= @user.errors.full_messages.each do |message| %>
-  　　      <%= message %>
-　      <% end %>
-      <% end %>
-    </p>
-
-    <div class="col-md-3">
-      <%= render 'books/userinfo', user: @user,book: @book %>
-    </div>
-
-    <div class="col-md-8 offset-md-1">
-      <h2>Users</h2>
-      <table class="table table-hover table-inverse">
+<table class="table table-hover table-inverse">
         <thead>
           <tr>
             <th>image</th>
@@ -24,7 +7,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @users.each do |user| %>
+          <% users.each do |user| %>
             <tr>
               <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpeg" %></td>
               <td><%= user.name %></td>
@@ -48,6 +31,3 @@
           <% end %>
         </tbody>
       </table>
-    </div>
-  </div>
-</div>
