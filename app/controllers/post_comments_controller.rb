@@ -1,27 +1,21 @@
 class PostCommentsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
+    @post_comment = PostComment.new(post_comment_params)
+    @post_comment.book_id = @book.id
+    @post_comment.user_id = current_user.id
+    @post_comment.save
+
     @book = Book.find(params[:book_id])
-    @comment = current_user.post_comments.new(post_comment_params)
-    @comment.book_id = @book.id
-
-  #   comment.save
-  #   redirect_to book_path(book)
-  # end
-
-    if  @comment.save
-    redirect_to book_path(@book)
-    else
-      @new_book = Book.new
-      @user = @book.user
-      @post_comment = PostComment.new
-　    render 'books/show'
-    end
   end
 
+  # @bookはあとにして、コメントを先に作成、後からbookと紐づけて非同期通信化させる
+
   def destroy
-    PostComment.find_by(id:params[:id],book_id:params[:book_id]).destroy
-    redirect_to book_path(params[:book_id])
+    @book = Book.find(params[:book_id])
+    post_comment = @book.post_comments.find(params[:id])
+    post_comment.destroy
   end
 
   private

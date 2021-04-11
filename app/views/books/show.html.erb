@@ -45,30 +45,15 @@
         </tr>
       </tbody>
     </table>
+
+<!--以下コメント機能の非同期通信化-->
+<table class="comment_area">
+  <%= render 'post_comments/comment', book: @book %>
+</table>
+<!--以上コメント機能の非同期通信化-->
+
 <!--以下コメント機能-->
-<% @book.post_comments.each do |post_comment| %>
-<div class="table">
-  <tbody align="center">
-    <tr>
-      <td>
-        <%= link_to attachment_image_tag(@user, :profile_image, :fill,60,60, fallback: "no_image.jpg"), user_path(@user.id) %>
-        </br>
-        <%= link_to @user.name,user_path(@user.id) %>
-      </td>
-      <td>
-        <%= post_comment.comment %>
-      </td>
-      <td>
-        <% if post_comment.user == current_user %>
-        <div class="comment-delete">
-          <%= link_to "Destroy",book_post_comment_path(post_comment.book,post_comment), method: :delete, data: { confirm: "Are you sure ?"},class: "btn btn-sm btn-danger" %>
-        </div>
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-</div>
-<% end %>
+
 
     <p class="text-danger">
       <% if @comment.present? %>
@@ -79,7 +64,7 @@
     </p>
 
     <div class="new-comments">
-      <%= form_with(model:[@book,@post_comment],local:true) do |f| %>
+      <%= form_with(model:[@book,@post_comment],remote:true) do |f| %>
         <%= f.text_area :comment,rows:'5',placeholder:"コメント" %>
         <p><%= f.submit "送信する" %></p>
       <% end %>
